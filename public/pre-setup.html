@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pre Setup - Laravel</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f3f3f3;
+                color: #333;
+            }
+            h1 {
+                margin: 0;
+                padding: 20px;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+            }
+            p {
+                font-size: 1.2em;
+                color: #333;
+                text-align: center;
+                margin-top: 20px;
+            }
+            span {
+                font-size: 1em;
+                color: #333;
+                text-align: center;
+                margin-top: 20px;
+                display: block;
+            }
+            button {
+                padding: 10px 20px;
+                background-color: #333;
+                color: #fff;
+                border: none;
+                cursor: pointer;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>The project has not been pre setup yet.</h1>
+        <p>Projects require an environment that is important for running the program, therefore pre-setup needs to be done.</p>
+        <span>Please run the command `php artisan naka:pre-setup` on your console, if so, run the program again to continue.</span>
+        <br>
+        <span>
+            Click button to back
+            <button type="button" onclick="backHome()">Home</button>
+            after running the command.
+        </span>
+
+        <script>
+            function backHome() {
+                window.location.href = '/';
+            }
+        </script>
+    </body>
+</html>

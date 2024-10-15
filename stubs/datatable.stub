@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\DataTables\DataTable;
+
+class {{ class }} extends DataTable
+{
+    /**
+     * Data Table constructor
+     *
+     * @return void
+     */
+    public function __construct() {
+        $this->interface = null;
+    }
+}
