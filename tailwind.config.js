@@ -1,3 +1,4 @@
+import daisyui from "daisyui"
 import forms from '@tailwindcss/forms';
 import defaultTheme from 'tailwindcss/defaultTheme';
 
@@ -14,6 +15,7 @@ export default {
     extend: {
       colors: {
         'black': '#000000',
+        'custom-yellow': '#FFD700',
         primary: {
           600: '#2b6cb0',
           700: '#2c5282',
@@ -69,8 +71,17 @@ export default {
       animation: {
         'spin-slow': 'spin 7s linear infinite',
       },
+      screens: {
+        '3xl': '2200px',
+      },
     },
   },
 
-  plugins: [forms],
+  plugins: [forms, daisyui],
+
+  daisyui: {
+    themes: ['light', 'dark'],
+  },
+
+  darkMode: ['class', '[data-theme="dark"]']
 };
