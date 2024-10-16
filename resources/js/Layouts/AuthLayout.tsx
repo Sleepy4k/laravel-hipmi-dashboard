@@ -1,5 +1,4 @@
 import { Head } from '@inertiajs/react';
-import FlashMessages from '@/Components/Messages/FlashMessages';
 
 interface AuthLayoutProps {
   title?: string;

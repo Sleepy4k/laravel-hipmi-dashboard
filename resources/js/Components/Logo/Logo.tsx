@@ -26,7 +26,7 @@ export default function Logo(props: LogoProps) {
           {...props}
           className={divClasses}
         >
-          <img src={app.logo} alt="App Logo" className={logoColors} />
+          <img loading='lazy' src={app.logo} alt="App Logo" className={logoColors} />
           <span className={textColors}>{app?.name || appName}</span>
         </div>
       ) : (

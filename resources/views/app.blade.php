@@ -47,5 +47,52 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+
+        <noscript>
+            <link rel="stylesheet" href="{{ asset('css/noscript.css') }}">
+
+            <div class="error-container">
+                <div class="logo-container">
+                    @if (isset($app_logo) && !empty($app_logo))
+                        <img
+                            src="{{ $app_logo }}"
+                            alt="Application Logo"
+                            class="app-logo"
+                        />
+                    @else
+                        <img
+                            src="{{ asset("images/noscript.png") }}"
+                            alt="Application Logo"
+                            class="app-logo"
+                        />
+                    @endif
+                </div>
+                <div class="code-container">
+                    <h1>412 Pre Condition Failed</h1>
+                    <p>
+                        Maaf, kamu tidak bisa mengakses laman ini karena javascript tidak
+                        aktif untuk website "<i>{{ config('app.url') }}</i>"
+                    </p>
+                </div>
+                <div class="whats-container">
+                    <h3>Apa yang terjadi?</h3>
+                    <p>
+                        Kode 412 menunjukkan bahwa anda tidak dapat mengakses laman ini
+                        karena tidak dapat memenuhi kondisi yang diperlukan untuk mengakses
+                        laman ini, yang mana kondisi tersebut adalah javascript harus aktif
+                        sehingga laman ini dapat berjalan dengan baik
+                    </p>
+                </div>
+                <div class="divider-container">
+                    <hr />
+                </div>
+                <div class="footer-container">
+                    <p>
+                        <b>Performance & Security by</b>
+                        <span class="it-team">IT {{ $app_name }}</span>
+                    </p>
+                </div>
+            </div>
+        </noscript>
     </body>
 </html>
