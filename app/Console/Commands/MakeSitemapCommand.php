@@ -3,10 +3,9 @@
 namespace App\Console\Commands;
 
 use Spatie\Crawler\Crawler;
-use Illuminate\Console\Command;
-use Illuminate\Support\Carbon;
-use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Sitemap\Tags\Url;
+use Illuminate\Console\Command;
+use Spatie\Sitemap\SitemapGenerator;
 
 class MakeSitemapCommand extends Command
 {
@@ -39,9 +38,21 @@ class MakeSitemapCommand extends Command
                     $crawler->setMaximumDepth(3);
                 })
                 ->getSitemap()
+                ->add(Url::create('/about')
+                    ->setPriority(0.4))
+                ->add(Url::create('/about/bpc')
+                    ->setPriority(0.4))
+                ->add(Url::create('/about/pt')
+                    ->setPriority(0.4))
+                ->add(Url::create('/activity')
+                    ->setPriority(0.4))
+                ->add(Url::create('/article')
+                    ->setPriority(0.4))
+                ->add(Url::create('/product')
+                    ->setPriority(0.4))
+                ->add(Url::create('/member')
+                    ->setPriority(0.4))
                 ->add(Url::create('/robots.txt')
-                    ->setLastModificationDate(Carbon::yesterday())
-                    ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
                     ->setPriority(0.1))
                 ->writeToFile(public_path('sitemap.xml'));
         } catch (\Throwable $th) {
