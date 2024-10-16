@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
         __DIR__.'/../app/Listeners',
     ])
     ->withSchedule(function (Schedule $schedule) {
-        $schedule->command('make:sitemap')->daily();
+        $schedule->command('make:sitemap')->monthly();
         $schedule->command('activitylog:clean')->daily();
     })
     ->withMiddleware(function (Middleware $middleware) {
