@@ -2,15 +2,40 @@
 
 use App\Http\Controllers\Error;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Application;
 
 Route::get('/', function () {
-    return inertia('Welcome', [
-        'canLogin' => Route::has('login'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return inertia('Landing/Home');
 })->name('landing');
+
+Route::prefix('about')->group(function () {
+    Route::get('/', function () {
+        return inertia('Landing/Home');
+    })->name('about');
+
+    Route::get('/pt', function () {
+        return inertia('Landing/Home');
+    })->name('about.pt');
+
+    Route::get('/bpc', function () {
+        return inertia('Landing/Home');
+    })->name('about.bpc');
+});
+
+Route::get('/activity', function () {
+    return inertia('Landing/Home');
+})->name('activity');
+
+Route::get('/article', function () {
+    return inertia('Landing/Home');
+})->name('article');
+
+Route::get('/product', function () {
+    return inertia('Landing/Home');
+})->name('product');
+
+Route::get('/member', function () {
+    return inertia('Landing/Home');
+})->name('member');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/dashboard.php';
