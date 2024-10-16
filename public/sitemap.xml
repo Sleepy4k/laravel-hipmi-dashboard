@@ -5,8 +5,35 @@
     
             </url>
     <url>
+        <loc>http://127.0.0.1:8000/about</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/about/bpc</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/about/pt</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/activity</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/article</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/product</loc>
+    
+            </url>
+    <url>
+        <loc>http://127.0.0.1:8000/member</loc>
+    
+            </url>
+    <url>
         <loc>http://127.0.0.1:8000/robots.txt</loc>
-        <lastmod>2024-09-06T00:00:00+00:00</lastmod>
-
+    
             </url>
 </urlset>

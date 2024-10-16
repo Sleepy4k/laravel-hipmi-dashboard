@@ -1,0 +1,83 @@
+* {
+    scroll-behavior: smooth
+}
+
+noscript {
+    background-color: #f8f8f8;
+    font-family: Arial, sans-serif;
+}
+
+.error-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    color: #000;
+    font-size: 1.5rem;
+}
+
+.logo-container {
+    display: flex;
+    margin-top: 5vh;
+    justify-content: center;
+}
+
+.logo-container img {
+    height: 18%;
+    width: 5rem;
+}
+
+.code-container {
+    text-align: center;
+    margin-bottom: 7vh;
+}
+
+.error-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.error-container p {
+    font-size: 1rem;
+}
+
+.whats-container {
+    margin-left: 5vw;
+    align-items: start;
+}
+
+.whats-container h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.whats-container p {
+    width: 75%;
+    font-size: 1rem;
+}
+
+.divider-container {
+    border: 0;
+    width: 100%;
+    height: 1px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.divider-container hr {
+    width: 90%;
+    align-items: center;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+
+.footer-container {
+    margin-left: 5vw;
+    align-items: start;
+}
+
+.footer-container .it-team {
+    font-size: 1rem;
+    color: #1085c9;
+    text-decoration: none;
+}
