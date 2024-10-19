@@ -2,7 +2,7 @@ import { ArrowUp } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function ScrollToTop() {
-  const MIN_TO_SCROLL_TOP = 100;
+  const MIN_TO_SCROLL_TOP = 250;
   const [isScrollDisabled, setIsScrollDisabled] = useState<boolean>(false);
 
   useEffect(() => {

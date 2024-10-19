@@ -8,11 +8,11 @@ export default function trans(key: string, replacer?: any, args?: any[]): string
   let translation: string = translations[key] || (replacer || key);
 
   if (args && args.length > 0) {
-    args.forEach((arg, index) => {
-      // Find all dynamic placeholders in the translation
-      // example: :name, :email, :password
-      const placeholders = translation.match(/:\w+/g);
+    // Find all dynamic placeholders in the translation
+    // example: :name, :email, :password
+    const placeholders = translation.match(/:\w+/g);
 
+    args.forEach((arg, index) => {
       // If there are no placeholders, return the translation as is
       if (!placeholders) return translation;
 

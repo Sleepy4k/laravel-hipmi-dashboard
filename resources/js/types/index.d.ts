@@ -70,6 +70,17 @@ export type QueryParams = {
   sort_direction: string | null;
 };
 
+export type LandingDataStruct = {
+  key: string;
+  value: any;
+}
+
+export type LandingData = {
+  logged_in: boolean;
+  navbar: LandingDataStruct[];
+  footer: LandingDataStruct[];
+};
+
 export type PageProps<
   T extends Record<string, unknown> = Record<string, unknown>
 > = T & {
@@ -83,4 +94,5 @@ export type PageProps<
   // Record object or empty object
   errors: Record<string, any>|null;
   translations: Record<string, any>|null;
+  landing: LandingData;
 };
