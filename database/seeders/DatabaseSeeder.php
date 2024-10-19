@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             ApplicationSettingSeeder::class,
             MenuMetaSeeder::class,
             MenuSeeder::class,
+            LandingTypeSeeder::class,
+            LandingSeeder::class,
             UserSeeder::class,
         ], $isMustSilent);
     }
