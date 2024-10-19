@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Resources\Menu\MenuResource;
 use App\Http\Resources\Menu\MenuMetaResource;
 
@@ -38,11 +39,13 @@ trait DashboardMenu
      */
     public function getMenus(Request $request)
     {
-        // Check if the user is logged in and on the dashboard page
-        if (auth('web')->check() && $request->is('dashboard*')) {
-            return $this->getDashboardMenus();
+        if (!auth('web')->check()
+            || !$request->is('dashboard*')
+            || Route::getCurrentRoute()->isFallback)
+        {
+            return [];
         }
 
-        return [];
+        return $this->getDashboardMenus();
     }
 }

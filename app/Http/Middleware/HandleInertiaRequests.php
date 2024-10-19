@@ -7,11 +7,12 @@ use App\Traits\AppSetting;
 use Illuminate\Http\Request;
 use App\Traits\DashboardMenu;
 use App\Traits\PageTranslate;
+use App\Traits\HandleLanding;
 use App\Http\Resources\User\AuthInertiaResource;
 
 class HandleInertiaRequests extends Middleware
 {
-    use AppSetting, PageTranslate, DashboardMenu;
+    use AppSetting, PageTranslate, DashboardMenu, HandleLanding;
 
     /**
      * The root template that is loaded on the first page visit.
@@ -53,6 +54,7 @@ class HandleInertiaRequests extends Middleware
                 'error' => $request->session()->get('error'),
             ],
             'menus' => $this->getMenus($request),
+            'landing' => $this->getLandingData(),
         ];
     }
 }
