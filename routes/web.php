@@ -1,33 +1,15 @@
 <?php
 
 use App\Http\Controllers\Error;
+use App\Http\Controllers\Landing;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return inertia('Landing/Home');
-})->name('landing');
+Route::get('/', Landing\HomeController::class)->name('landing');
+Route::get('/about', Landing\AboutController::class)->name('about');
 
-Route::prefix('about')->group(function () {
-    Route::get('/', function () {
-        return inertia('Landing/Home');
-    })->name('about');
-
-    Route::get('/pt', function () {
-        return inertia('Landing/Home');
-    })->name('about.pt');
-
-    Route::get('/bpc', function () {
-        return inertia('Landing/Home');
-    })->name('about.bpc');
-});
-
-Route::get('/activity', function () {
-    return inertia('Landing/Home');
-})->name('activity');
-
-Route::get('/article', function () {
-    return inertia('Landing/Home');
-})->name('article');
+Route::resource('/activity', Landing\ActivityController::class)
+    ->only('index', 'show')
+    ->name('index', 'activity');
 
 Route::get('/product', function () {
     return inertia('Landing/Home');
