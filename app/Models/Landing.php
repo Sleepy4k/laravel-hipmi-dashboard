@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Observers\LandingObserver;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use ElipZis\Cacheable\Models\Traits\Cacheable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
+#[ObservedBy([LandingObserver::class])]
 class Landing extends Model
 {
     use HasFactory, LogsActivity, Cacheable;
@@ -164,7 +167,9 @@ class Landing extends Model
      * @return array
      */
     public function getCacheableProperties(): array {
-        $overrided = [];
+        $overrided = [
+            'prefix' => 'landingcache',
+        ];
 
         return array_merge(config('cacheable'), $overrided);
     }

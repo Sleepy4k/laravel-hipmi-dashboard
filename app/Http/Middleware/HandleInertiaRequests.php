@@ -30,6 +30,22 @@ class HandleInertiaRequests extends Middleware
     }
 
     /**
+     * Handle authenticated user data, also manipulate it
+     *
+     * @param mixed $user
+     *
+     * @return mixed
+     */
+    private function handleUserData(mixed $user = null): mixed
+    {
+        if (!$user || $user == null) return null;
+
+        $userData = $user->loadMissing('roles.permissions');
+
+        return new AuthInertiaResource($userData);
+    }
+
+    /**
      * Define the props that are shared by default.
      *
      * @return array<string, mixed>
@@ -46,15 +62,15 @@ class HandleInertiaRequests extends Middleware
                 'description' => $this->getAppSetting('app_meta_description'),
             ],
             'auth' => [
-                'user' => $request->user() ? new AuthInertiaResource($request->user()?->loadMissing('roles.permissions')) : null,
+                'user' => $this->handleUserData($request->user()),
             ],
-            'translations' => $this->getTranslations(),
             'flash' => [
                 'success' => $request->session()->get('success'),
                 'error' => $request->session()->get('error'),
             ],
             'menus' => $this->getMenus($request),
             'landing' => $this->getLandingData(),
+            'translations' => $this->getTranslations(),
         ];
     }
 }

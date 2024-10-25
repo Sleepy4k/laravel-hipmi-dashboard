@@ -3,16 +3,13 @@
 namespace App\Models;
 
 use Spatie\Activitylog\LogOptions;
-use App\Observers\LandingTypeObserver;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use ElipZis\Cacheable\Models\Traits\Cacheable;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
-#[ObservedBy([LandingTypeObserver::class])]
-class LandingType extends Model
+class ActivityImage extends Model
 {
     use HasFactory, LogsActivity, Cacheable;
 
@@ -42,7 +39,7 @@ class LandingType extends Model
      *
      * @var string
      */
-    protected $table = 'landing_data_types';
+    protected $table = 'activity_images';
 
     /**
      * The primary key associated with the table.
@@ -78,7 +75,7 @@ class LandingType extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name'
+        'url'
     ];
 
     /**
@@ -114,7 +111,7 @@ class LandingType extends Model
      */
     protected $searchable = [
         'id',
-        'name'
+        'url',
     ];
 
     /**
@@ -136,8 +133,7 @@ class LandingType extends Model
     {
         return [
             'id' => 'int',
-            'uuid' => 'string',
-            'name' => 'string',
+            'url' => 'string',
             'created_at' => 'datetime:Y-m-d',
             'updated_at' => 'datetime:Y-m-d',
         ];
@@ -164,19 +160,19 @@ class LandingType extends Model
      */
     public function getCacheableProperties(): array {
         $overrided = [
-            'prefix' => 'landingtypecache',
+            'prefix' => 'activityimagecache',
         ];
 
         return array_merge(config('cacheable'), $overrided);
     }
 
     /**
-     * Get the landing data for the type.
+     * Get the activities for the image.
      *
-     * @return HasMany
+     * @return BelongsTo
      */
-    public function data(): HasMany
+    public function activities(): BelongsTo
     {
-        return $this->hasMany(Landing::class, 'type_id', 'id');
+        return $this->belongsTo(Activity::class, 'activity_id', 'id');
     }
 }

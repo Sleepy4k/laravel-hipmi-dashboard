@@ -17,8 +17,12 @@ class BindServiceProvider extends ServiceProvider
         $this->app->bind('App\Contracts\Models\LogInterface', 'App\Repositories\Models\LogRepository');
         $this->app->bind('App\Contracts\Models\RoleInterface', 'App\Repositories\Models\RoleRepository');
         $this->app->bind('App\Contracts\Models\UserInterface', 'App\Repositories\Models\UserRepository');
+        $this->app->bind('App\Contracts\Models\LandingInterface', 'App\Repositories\Models\LandingRepository');
+        $this->app->bind('App\Contracts\Models\ActivityInterface', 'App\Repositories\Models\ActivityRepository');
         $this->app->bind('App\Contracts\Models\LanguageInterface', 'App\Repositories\Models\LanguageRepository');
         $this->app->bind('App\Contracts\Models\PermissionInterface', 'App\Repositories\Models\PermissionRepository');
+        $this->app->bind('App\Contracts\Models\LandingTypeInterface', 'App\Repositories\Models\LandingTypeRepository');
+        $this->app->bind('App\Contracts\Models\ActivityImageInterface', 'App\Repositories\Models\ActivityImageRepository');
         $this->app->bind('App\Contracts\Models\ApplicationSettingInterface', 'App\Repositories\Models\ApplicationSettingRepository');
         $this->app->bind('App\Contracts\Models\ApplicationSettingTypeInterface', 'App\Repositories\Models\ApplicationSettingTypeRepository');
         $this->app->bind('App\Contracts\Models\ApplicationSettingTypeInterface', 'App\Repositories\Models\ApplicationSettingTypeRepository');

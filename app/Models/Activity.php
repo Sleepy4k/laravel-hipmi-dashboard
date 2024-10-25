@@ -3,16 +3,13 @@
 namespace App\Models;
 
 use Spatie\Activitylog\LogOptions;
-use App\Observers\LandingTypeObserver;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use ElipZis\Cacheable\Models\Traits\Cacheable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
-#[ObservedBy([LandingTypeObserver::class])]
-class LandingType extends Model
+class Activity extends Model
 {
     use HasFactory, LogsActivity, Cacheable;
 
@@ -42,7 +39,7 @@ class LandingType extends Model
      *
      * @var string
      */
-    protected $table = 'landing_data_types';
+    protected $table = 'activities';
 
     /**
      * The primary key associated with the table.
@@ -78,7 +75,9 @@ class LandingType extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name'
+        'slug',
+        'title',
+        'content',
     ];
 
     /**
@@ -114,7 +113,8 @@ class LandingType extends Model
      */
     protected $searchable = [
         'id',
-        'name'
+        'slug',
+        'title',
     ];
 
     /**
@@ -136,11 +136,22 @@ class LandingType extends Model
     {
         return [
             'id' => 'int',
-            'uuid' => 'string',
-            'name' => 'string',
+            'slug' => 'string',
+            'title' => 'string',
+            'content' => 'string',
             'created_at' => 'datetime:Y-m-d',
             'updated_at' => 'datetime:Y-m-d',
         ];
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**
@@ -164,19 +175,19 @@ class LandingType extends Model
      */
     public function getCacheableProperties(): array {
         $overrided = [
-            'prefix' => 'landingtypecache',
+            'prefix' => 'activitycache',
         ];
 
         return array_merge(config('cacheable'), $overrided);
     }
 
     /**
-     * Get the landing data for the type.
+     * Get the activity data that owns the activity images.
      *
      * @return HasMany
      */
-    public function data(): HasMany
+    public function images(): HasMany
     {
-        return $this->hasMany(Landing::class, 'type_id', 'id');
+        return $this->hasMany(ActivityImage::class, 'activity_id', 'id');
     }
 }
