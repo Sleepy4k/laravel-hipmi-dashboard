@@ -12,6 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        // To prevent user dummy generated when installing this project
         if (!file_exists(storage_path('.installed'))) return;
 
         $totalUser = User::query()->withoutCache()->count();

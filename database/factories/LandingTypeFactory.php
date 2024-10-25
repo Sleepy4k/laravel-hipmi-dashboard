@@ -43,25 +43,7 @@ class LandingTypeFactory extends Factory
             ],
             [
                 'uuid' => \Illuminate\Support\Str::uuid(),
-                'name' => 'about.pt',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'uuid' => \Illuminate\Support\Str::uuid(),
-                'name' => 'about.bpc',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'uuid' => \Illuminate\Support\Str::uuid(),
                 'name' => 'activity',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'uuid' => \Illuminate\Support\Str::uuid(),
-                'name' => 'article',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
