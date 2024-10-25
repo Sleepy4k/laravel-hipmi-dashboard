@@ -1,9 +1,17 @@
 import "./bootstrap";
 import "../css/app.css";
+import 'aos/dist/aos.css';
 
+import AOS from 'aos';
 import { createRoot } from "react-dom/client";
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
+
+AOS.init({
+  duration: 1000,
+  easing: 'ease-in-out',
+  once: true,
+});
 
 // Get app title from meta tag base-title
 const appName =

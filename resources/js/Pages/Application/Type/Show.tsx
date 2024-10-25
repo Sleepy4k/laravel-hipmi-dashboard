@@ -73,7 +73,7 @@ function Show({ data, backUrl }: PageProps<{ backUrl: string; data: any }>) {
           <span className="font-medium text-indigo-600"> /</span> Show
         </h1>
         <div className="flex items-center lg:gap-5 gap-1 lg:flex-row flex-col">
-          <Link href={backUrl} className="btn btn-indigo focus:outline-none">
+          <Link href={backUrl} className="btn-indigo focus:outline-none">
             Back
           </Link>
         </div>
@@ -103,7 +103,7 @@ function Show({ data, backUrl }: PageProps<{ backUrl: string; data: any }>) {
           </DeleteButton>
           <Link
             href={route("application.type.edit", data.uuid)}
-            className="ml-auto btn btn-indigo"
+            className="ml-auto btn-indigo"
           >
             Edit Setting Type
           </Link>

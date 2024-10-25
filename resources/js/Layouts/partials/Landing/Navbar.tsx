@@ -56,29 +56,12 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <details>
-                <summary>
-                  <Link href={route("about")}>Tentang HIPMI</Link>
-                </summary>
-                <ul className="p-2">
-                  <li>
-                    <Link
-                      href={route("about.pt")}
-                      className={handleActive(["about.pt"])}
-                    >
-                      HIPMI PT
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={route("about.bpc")}
-                      className={handleActive(["about.bpc"])}
-                    >
-                      HIPMI BPC
-                    </Link>
-                  </li>
-                </ul>
-              </details>
+              <Link
+                href={route("about")}
+                className={handleActive(["about"])}
+              >
+                Tentang
+              </Link>
             </li>
             <li>
               <Link
@@ -86,14 +69,6 @@ export default function NavBar() {
                 className={handleActive(["activity"])}
               >
                 Kegiatan
-              </Link>
-            </li>
-            <li>
-              <Link
-                href={route("article")}
-                className={handleActive(["article"])}
-              >
-                Artikel
               </Link>
             </li>
             <li>
@@ -164,27 +139,12 @@ export default function NavBar() {
                 </Link>
               </li>
               <li>
-                <Link href={route("about")} className={handleActive(["about"])}>
-                  Tentang HIPMI
+                <Link
+                  href={route("about")}
+                  className={handleActive(["about"])}
+                >
+                  Tentang
                 </Link>
-                <ul className="p-2">
-                  <li>
-                    <Link
-                      href={route("about.pt")}
-                      className={handleActive(["about.pt"])}
-                    >
-                      HIPMI PT
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href={route("about.bpc")}
-                      className={handleActive(["about.bpc"])}
-                    >
-                      HIPMI BPC
-                    </Link>
-                  </li>
-                </ul>
               </li>
               <li>
                 <Link
@@ -192,14 +152,6 @@ export default function NavBar() {
                   className={handleActive(["activity"])}
                 >
                   Kegiatan
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={route("article")}
-                  className={handleActive(["article"])}
-                >
-                  Artikel
                 </Link>
               </li>
               <li>

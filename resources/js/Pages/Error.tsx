@@ -26,7 +26,7 @@ export default function ErrorPage({
         <h1 className="text-3xl">{`${status} ${title}`}</h1>
         <p className="mt-3 text-lg leading-tight">{description}</p>
         <div className="mt-5">
-          <Link href={home_url || redirectUrl} className="mt-5 btn btn-primary">
+          <Link href={home_url || redirectUrl} className="mt-5 btn-indigo">
             {home}
           </Link>
         </div>

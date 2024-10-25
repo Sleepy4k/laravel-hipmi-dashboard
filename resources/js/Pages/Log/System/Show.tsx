@@ -19,7 +19,7 @@ function Show({ data }: PageProps<{ data: any }>) {
         <div className="flex items-center lg:gap-5 gap-1 lg:flex-row flex-col">
           <Link
             href={route("log.system.index")}
-            className="btn btn-indigo focus:outline-none"
+            className="btn-indigo focus:outline-none"
           >
             Back
           </Link>

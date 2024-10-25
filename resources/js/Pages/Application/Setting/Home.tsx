@@ -92,7 +92,7 @@ function Home({
           <button
             type="button"
             onClick={handleChangeMode}
-            className="btn btn-indigo focus:outline-none"
+            className="btn-indigo focus:outline-none"
           >
             Switch to {mode == "box" ? "Table" : "Kanban"} Mode
           </button>

@@ -69,7 +69,7 @@ function Create({
         <div className="flex items-center lg:gap-5 gap-1 lg:flex-row flex-col">
           <Link
             href={backUrl}
-            className="btn btn-indigo focus:outline-none"
+            className="btn-indigo focus:outline-none"
           >
             Back
           </Link>

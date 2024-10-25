@@ -49,9 +49,9 @@ export default function Footer() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="#000000"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -67,9 +67,9 @@ export default function Footer() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="#000000"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
             <path d="m10 15 5-3-5-3z" />
@@ -84,9 +84,9 @@ export default function Footer() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="#000000"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           >
             <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -104,12 +104,15 @@ export default function Footer() {
     );
 
     return (
-      <div className="flex gap-3">
-        {socialMedia.map((data) => {
+      <div
+        className="flex gap-3"
+      >
+        {socialMedia.map((data, index) => {
           if (!data.url || data.url == null) return null;
 
           return (
             <a
+              key={`data-${Math.floor(Math.random() * 4 + 1)}-social-media-${index}`}
               href={data.url || "#"}
               title={data.title || "Social Media"}
               target="_blank"
@@ -132,11 +135,12 @@ export default function Footer() {
 
     return (
       <>
-        {usefulLink.map((data) => {
+        {usefulLink.map((data, index) => {
           if (!data.url || data.url == null) return null;
 
           return (
             <a
+              key={`data-${Math.floor(Math.random() * 4 + 1)}-useful-link-${index}`}
               href={data.url}
               target="_blank"
               rel="noopener"
@@ -180,18 +184,18 @@ export default function Footer() {
         <nav className="lg:max-w-[15vw]">
           <h6 className="footer-title font-extrabold">Site Menu</h6>
           <Link
+            href={route("about")}
+            preserveScroll
+            className="link link-hover"
+          >
+            Tentang
+          </Link>
+          <Link
             href={route("activity")}
             preserveScroll
             className="link link-hover"
           >
             Kegiatan
-          </Link>
-          <Link
-            href={route("article")}
-            preserveScroll
-            className="link link-hover"
-          >
-            Artikel
           </Link>
           <Link
             href={route("product")}

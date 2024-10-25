@@ -91,14 +91,14 @@ function Home({
         <div className="flex items-center lg:gap-5 gap-1 lg:flex-row flex-col">
           <Link
             href={route('translate.language.index')}
-            className="btn btn-indigo focus:outline-none"
+            className="btn-indigo focus:outline-none"
           >
             Change Language
           </Link>
           <button
             type="button"
             onClick={handleChangeMode}
-            className="btn btn-indigo focus:outline-none"
+            className="btn-indigo focus:outline-none"
           >
             Switch to {mode == "box" ? "Table" : "Kanban"} Mode
           </button>

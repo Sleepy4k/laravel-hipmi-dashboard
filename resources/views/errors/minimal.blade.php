@@ -14,7 +14,7 @@
                 <h1 class="text-3xl">@yield('code') @yield('title')</h1>
                 <p class="mt-3 text-lg leading-tight">@yield('description')</p>
                 <div class="mt-5">
-                    <a href="{{ url('/') }}" class="mt-5 btn btn-primary">
+                    <a href="{{ url('/') }}" class="mt-5 btn-primary">
                         Back to home
                     </a>
                 </div>
