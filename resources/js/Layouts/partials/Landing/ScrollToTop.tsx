@@ -6,14 +6,13 @@ export default function ScrollToTop() {
   const [isScrollDisabled, setIsScrollDisabled] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleOnScroll = () => {
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
+    const handleScroll = () => {
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       setIsScrollDisabled(scrollTop > MIN_TO_SCROLL_TOP);
     };
 
-    window.addEventListener("scroll", handleOnScroll);
-    return () => window.removeEventListener("scroll", handleOnScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleScrollToTop = () => {

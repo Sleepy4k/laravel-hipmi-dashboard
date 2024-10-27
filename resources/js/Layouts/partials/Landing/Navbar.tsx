@@ -6,20 +6,17 @@ export default function NavBar() {
   const { logged_in, navbar } = usePage<{ landing: LandingData }>().props
     .landing;
 
-  const navbarLogo = navbar.map((data: LandingDataStruct) => {
-    if (data.key == "banner") return data;
-    return null;
-  });
+  const navbarLogo = navbar.find(
+    (data: LandingDataStruct) => data.key === "banner"
+  );
 
   const handleActive = (url: string[]) => {
     const isActive = url?.includes(route().current() as string);
 
-    const textClasses = classNames({
+    return classNames({
       "text-white active": isActive,
       "text-gray-800 group-hover:text-white": !isActive,
     });
-
-    return textClasses;
   };
 
   return (
@@ -27,11 +24,12 @@ export default function NavBar() {
       <div className="navbar w-[85vw]">
         <div className="navbar-start">
           <Link href={route("landing")} className="btn btn-ghost">
-            {navbarLogo && navbarLogo.map.length > 0 ? (
+            {navbarLogo && navbarLogo !== undefined ? (
               <img
-                src={navbarLogo[0]?.value}
-                loading="lazy"
+                src={navbarLogo.value}
                 alt="App Banner Logo"
+                width={40}
+                loading="lazy"
                 className="lg:h-[2.5rem] h-9"
               />
             ) : (
@@ -52,21 +50,18 @@ export default function NavBar() {
                 href={route("landing")}
                 className={handleActive(["landing"])}
               >
-                Home
+                Beranda
               </Link>
             </li>
             <li>
-              <Link
-                href={route("about")}
-                className={handleActive(["about"])}
-              >
+              <Link href={route("about")} className={handleActive(["about"])}>
                 Tentang
               </Link>
             </li>
             <li>
               <Link
                 href={route("activity")}
-                className={handleActive(["activity"])}
+                className={handleActive(["activity", "activity.show"])}
               >
                 Kegiatan
               </Link>
@@ -135,14 +130,11 @@ export default function NavBar() {
                   href={route("landing")}
                   className={handleActive(["landing"])}
                 >
-                  Home
+                  Beranda
                 </Link>
               </li>
               <li>
-                <Link
-                  href={route("about")}
-                  className={handleActive(["about"])}
-                >
+                <Link href={route("about")} className={handleActive(["about"])}>
                   Tentang
                 </Link>
               </li>

@@ -7,6 +7,9 @@
         <title inertia>{{ $app_name }}</title>
         <meta name="base-title" content="{{ $app_name }}">
 
+        {{-- Canonical --}}
+        <link rel="canonical" href="{{ config('app.url') }}">
+
         {{-- Meta --}}
         <meta name="author" content="{{ isset($app_author) ? $app_author : $app_name }}">
         <meta name="keywords" content="{{ isset($app_keyword) ? $app_keyword : $app_name }}">
@@ -35,12 +38,15 @@
         <meta property="og:locale" content="{{ str_replace('_', '-', app()->getLocale()) }}">
         <meta property="og:url" content="{{ config('app.url') }}">
 
+        {{-- CSP Meta --}}
+        @cspMetaTag(App\Support\CspPolicy::class)
+
         {{-- Fonts --}}
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         {{-- Scripts --}}
-        @routes
+        @routes(nonce: Vite::cspNonce())
         @viteReactRefresh
         @vite(['resources/js/app.tsx', "resources/js/Pages/{$page['component']}.tsx"])
         @inertiaHead

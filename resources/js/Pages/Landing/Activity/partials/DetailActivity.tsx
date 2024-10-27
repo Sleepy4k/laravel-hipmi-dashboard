@@ -1,0 +1,70 @@
+import { convertDateToLocaleString } from "@/utils/parse";
+import { Calendar } from "lucide-react";
+
+type ImageBody = {
+  url: string;
+};
+
+type ActivityDataProp = {
+  slug: string;
+  title: string;
+  thumbnail: string | null;
+  created_at: string;
+};
+
+type ActivityData = ActivityDataProp & {
+  content: TrustedHTML;
+  images: ImageBody[];
+};
+
+type DetailActivityProp = {
+  activity: ActivityData;
+};
+
+export default function DetailActivity({ activity }: DetailActivityProp) {
+  return (
+    <div className="w-full md:w-2/3 p-4">
+      <div className="blog-post">
+        <div className="md:w-[48vw] w-full md:h-[50vh] mb-8 overflow-hidden">
+          <img
+            src={activity.thumbnail || ""}
+            alt="Thumbnail Kegiatan"
+            loading="lazy"
+            className="w-full h-full rounded-lg mb-4"
+          />
+        </div>
+      </div>
+
+      <div className="gallery-images">
+        <ul className="flex flex-wrap gap-2">
+          {activity.images &&
+            activity.images.length > 0 &&
+            activity.images.map((image: ImageBody, index: number) => (
+              <li>
+                <img
+                  src={image.url || ""}
+                  loading="lazy"
+                  alt={`gallery-image-${index + 1}`}
+                  className="w-16 h-16 rounded-lg"
+                />
+              </li>
+            ))}
+        </ul>
+      </div>
+
+      <h4 className="text-2xl font-semibold mt-8">{activity.title}</h4>
+
+      <div className="flex items-center mt-2">
+        <Calendar />
+        <span className="ml-2">
+          {convertDateToLocaleString(activity.created_at)}
+        </span>
+      </div>
+
+      <p
+        className="mt-6"
+        dangerouslySetInnerHTML={{ __html: activity.content || "" }}
+      />
+    </div>
+  );
+}
