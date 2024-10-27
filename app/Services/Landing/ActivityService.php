@@ -16,7 +16,7 @@ class ActivityService extends Service
      */
     public function index(): array
     {
-        $activities = PreviewActivityResource::collection($this->activityInterface->paginate(6, ['id', 'slug', 'title', 'content', 'created_at'], ['images']));
+        $activities = PreviewActivityResource::collection($this->activityInterface->paginate(6, ['id', 'slug', 'title', 'content', 'created_at'], ['images:activity_id,url']));
 
         return compact('activities');
     }
@@ -30,8 +30,8 @@ class ActivityService extends Service
      */
     public function show(int $id): array
     {
-        $data = new DetailActivityResource($this->activityInterface->findById($id, ['*'], ['images']));
-        $latest = LatestActivityResource::collection($this->activityInterface->all(['id', 'slug', 'title', 'created_at'], ['images'], [['id', '!=', $id]], 'created_at', true, [], 3));
+        $data = new DetailActivityResource($this->activityInterface->findById($id, ['id', 'slug', 'title', 'content', 'created_at'], ['images:activity_id,url']));
+        $latest = LatestActivityResource::collection($this->activityInterface->all(['id', 'slug', 'title', 'created_at'], ['images:activity_id,url'], [['id', '!=', $id]], 'created_at', true, [], 3));
 
         return compact('data', 'latest');
     }

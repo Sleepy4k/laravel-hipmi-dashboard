@@ -22,11 +22,13 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->share('app_name', !empty($this->getAppSetting('app_name')) ? $this->getAppSetting('app_name') : config('app.name'));
-        view()->share('app_logo', $this->getAppSetting('app_logo'));
-        view()->share('app_favicon', $this->getAppSetting('app_favicon'));
-        view()->share('app_author', $this->getAppSetting('app_meta_author', 'benjamin4k'));
-        view()->share('app_description', $this->getAppSetting('app_meta_description'));
-        view()->share('app_keyword', $this->getAppSetting('app_meta_keyword'));
+        $appSettings = $this->getAppSettings();
+
+        view()->share('app_name', !empty($appSettings['app_name']) ? $appSettings['app_name'] : config('app.name'));
+        view()->share('app_logo', $appSettings['app_logo'] ?? '');
+        view()->share('app_favicon', $appSettings['app_favicon'] ?? '');
+        view()->share('app_author', $appSettings['app_meta_author'] ?? 'benjamin4k');
+        view()->share('app_description', $appSettings['app_meta_description'] ?? '');
+        view()->share('app_keyword', $appSettings['app_meta_keyword'] ?? '');
     }
 }

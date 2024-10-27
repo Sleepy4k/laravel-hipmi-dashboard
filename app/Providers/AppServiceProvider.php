@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
@@ -23,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Vite::useIntegrityKey(hash('sha512', Str::slug(config('app.name')).'|x|'.config('app.key')));
+
         JsonResource::withoutWrapping();
 
         RateLimiter::for('web', function (Request $request) {

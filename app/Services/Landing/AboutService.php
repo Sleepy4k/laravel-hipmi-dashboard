@@ -15,7 +15,7 @@ class AboutService extends Service
     public function invoke(): array
     {
         $homeId = $this->landingTypeInterface->findByCustomId([['name', '=', 'about']], ['id']);
-        $data = GlobalPageResource::collection($this->landingInterface->all(['id', 'key', 'value', 'type_id'], ['type'], [['type_id', '=', $homeId->id]]));
+        $data = GlobalPageResource::collection($this->landingInterface->all(['id', 'key', 'value', 'type_id'], [], [['type_id', '=', $homeId->id]]));
 
         return compact('data');
     }

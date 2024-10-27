@@ -52,14 +52,16 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $appSettings = $this->getAppSettings();
+
         return [
             ...parent::share($request),
             'app' => [
                 'debug' => config('app.debug'),
-                'name' => $this->getAppSetting('app_name'),
-                'logo' => $this->getAppSetting('app_logo'),
-                'favicon' => $this->getAppSetting('app_favicon'),
-                'description' => $this->getAppSetting('app_meta_description'),
+                'name' => $appSettings['app_name'] ?? '',
+                'logo' => $appSettings['app_logo'] ?? '',
+                'favicon' => $appSettings['app_favicon'] ?? '',
+                'description' => $appSettings['app_meta_description'] ?? '',
             ],
             'auth' => [
                 'user' => $this->handleUserData($request->user()),

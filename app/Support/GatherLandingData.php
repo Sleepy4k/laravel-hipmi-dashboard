@@ -21,7 +21,9 @@ class GatherLandingData
 
     public static function getPageData(string $page): mixed
     {
-        $data = Landing::select(['id', 'key', 'value', 'type_id'])->whereRelation('type', 'name', '=', $page)->get();
+        $data = Landing::query()->select(['id', 'key', 'value', 'type_id'])->whereRelation('type', function ($query) use ($page) {
+            $query->select(['id', 'name'])->where('name', '=', $page);
+        })->get();
 
         return GlobalPageResource::collection($data);
     }
