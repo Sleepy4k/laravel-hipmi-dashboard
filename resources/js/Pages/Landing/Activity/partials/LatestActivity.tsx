@@ -26,13 +26,18 @@ export default function LatestActivity({ activities }: LatestActivityProp) {
       );
 
     return activities.map((activity: ActivityDataProp, index: number) => (
-      <div className="recent-posts mb-6" key={index}>
+      <div
+        data-aos="fade-up"
+        data-aos-delay={`${index * 250}`}
+        key={`latest-activity-${index}`}
+        className="recent-posts mb-6"
+      >
         <div className="flex">
           <div className="w-1/3">
             <div className="md:w-[6vw] md:h-[8vh] me-[2vw] overflow-hidden">
               <img
                 src={activity.thumbnail || ""}
-                alt={`Event Image ${index + 1}`}
+                alt={`Activity Thumbnail ${index + 1}`}
                 loading="lazy"
                 className="w-full h-full rounded-lg"
               />
@@ -59,7 +64,9 @@ export default function LatestActivity({ activities }: LatestActivityProp) {
   return (
     <aside className="w-full lg:w-auto p-4">
       <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-        <h3 className="text-xl font-semibold mb-4">Terbaru</h3>
+        <h3 className="text-xl font-semibold mb-4" data-aos="fade-right">
+          Terbaru
+        </h3>
         <div className="divider w-auto h-1 bg-custom-yellow mb-8" />
         <div className="latest-article">
           <Suspense

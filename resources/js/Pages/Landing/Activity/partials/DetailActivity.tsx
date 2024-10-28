@@ -27,6 +27,7 @@ export default function DetailActivity({ activity }: DetailActivityProp) {
       <div className="blog-post">
         <div className="md:w-[48vw] w-full md:h-[50vh] mb-8 overflow-hidden">
           <img
+            data-aos="fade-left"
             src={activity.thumbnail || ""}
             alt="Thumbnail Kegiatan"
             loading="lazy"
@@ -40,7 +41,7 @@ export default function DetailActivity({ activity }: DetailActivityProp) {
           {activity.images &&
             activity.images.length > 0 &&
             activity.images.map((image: ImageBody, index: number) => (
-              <li>
+              <li data-aos="fade-left" data-aos-delay={`${index * 250}`}>
                 <img
                   src={image.url || ""}
                   loading="lazy"
@@ -52,9 +53,11 @@ export default function DetailActivity({ activity }: DetailActivityProp) {
         </ul>
       </div>
 
-      <h4 className="text-2xl font-semibold mt-8">{activity.title}</h4>
+      <h4 className="text-2xl font-semibold mt-8" data-aos="fade-up">
+        {activity.title}
+      </h4>
 
-      <div className="flex items-center mt-2">
+      <div className="flex items-center mt-2" data-aos="fade-up">
         <Calendar />
         <span className="ml-2">
           {convertDateToLocaleString(activity.created_at)}
@@ -62,6 +65,7 @@ export default function DetailActivity({ activity }: DetailActivityProp) {
       </div>
 
       <p
+        data-aos="fade-up"
         className="mt-6"
         dangerouslySetInnerHTML={{ __html: activity.content || "" }}
       />
