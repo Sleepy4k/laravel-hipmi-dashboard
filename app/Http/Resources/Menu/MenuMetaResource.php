@@ -30,6 +30,8 @@ class MenuMetaResource extends JsonResource
      */
     private function handlePermissions(): array
     {
+        if (!$this->permission || empty($this->permissions)) return [];
+
         $splitted = explode(',', $this->permission);
         $trimmed = array_map('trim', $splitted);
         $filtered = array_filter($trimmed);
@@ -44,6 +46,8 @@ class MenuMetaResource extends JsonResource
      */
     private function handleActiveRoutes(): array
     {
+        if (!$this->active_routes || empty($this->active_routes)) return [];
+
         $splitted = explode(',', $this->active_routes);
         $trimmed = array_map('trim', $splitted);
         $filtered = array_filter($trimmed);

@@ -44,7 +44,7 @@ interface EloquentInterface
      *
      * @return Collection|Model
      */
-    public function get(array $columns = ['*'], bool $first, array $relations = [], array $wheres = [], string $orderBy = 'created_at', bool $latest = true, array $roles = []): Collection|Model;
+    public function get(array $columns = ['*'], bool $first = false, array $relations = [], array $wheres = [], string $orderBy = 'created_at', bool $latest = true, array $roles = []): Collection|Model;
 
     /**
      * Get all in pagination models.
