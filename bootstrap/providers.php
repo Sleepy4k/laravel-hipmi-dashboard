@@ -5,4 +5,5 @@ return [
     App\Providers\BindServiceProvider::class,
     App\Providers\GateServiceProvider::class,
     App\Providers\ViewServiceProvider::class,
+    Barryvdh\Debugbar\ServiceProvider::class,
 ];
