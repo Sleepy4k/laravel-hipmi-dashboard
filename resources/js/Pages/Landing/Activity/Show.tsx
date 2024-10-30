@@ -2,27 +2,7 @@ import LandingLayout from "@/Layouts/LandingLayout";
 import LatestActivity from "./partials/LatestActivity";
 import DetailActivity from "./partials/DetailActivity";
 import { Link } from "@inertiajs/react";
-
-type ImageBody = {
-  url: string;
-};
-
-type LatestActivity = {
-  slug: string;
-  title: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-type ActivityData = LatestActivity & {
-  content: TrustedHTML;
-  images: ImageBody[];
-};
-
-type ShowPageProp = {
-  data: ActivityData;
-  latest: LatestActivity[];
-};
+import { ShowPageProp } from "./types";
 
 function Show({ data, latest }: ShowPageProp) {
   return (

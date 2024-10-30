@@ -1,19 +1,7 @@
 import LandingLayout from "@/Layouts/LandingLayout";
-import { PaginatedData } from "@/types";
 import Pagination from "@/Components/Pagination/Pagination";
 import ActivityCard from "./partials/ActivityCard";
-
-type ActivityDataProp = {
-  slug: string;
-  title: string;
-  content: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-type HomePageProp = {
-  activities: PaginatedData<ActivityDataProp>;
-};
+import { HomePageProp } from "./types";
 
 function Home({ activities }: HomePageProp) {
   return (

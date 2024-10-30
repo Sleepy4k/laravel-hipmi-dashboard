@@ -1,18 +1,7 @@
 import { Suspense } from "react";
 import { convertDateToLocaleString } from "@/utils/parse";
 import { Link } from "@inertiajs/react";
-
-type ActivityDataProp = {
-  slug: string;
-  title: string;
-  content: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-type LatestActivityProp = {
-  activities: ActivityDataProp[];
-};
+import { ActivityDataProp, LatestActivityProp } from "../types";
 
 export default function LatestActivity({ activities }: LatestActivityProp) {
   const RenderActivities = () => {

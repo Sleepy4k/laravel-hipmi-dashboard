@@ -1,21 +1,9 @@
-import { PaginatedData } from "@/types";
 import { convertDateToLocaleString } from "@/utils/parse";
 import { Link } from "@inertiajs/react";
 import { Suspense } from "react";
+import { ActivityDataProp, HomePageProp } from "../types";
 
-type ActivityDataProp = {
-  slug: string;
-  title: string;
-  content: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-export default function ActivityCard({
-  activities,
-}: {
-  activities: PaginatedData<ActivityDataProp>;
-}) {
+export default function ActivityCard({ activities }: HomePageProp) {
   const RenderActivities = () => {
     if (!activities || activities.data.length === 0)
       return (

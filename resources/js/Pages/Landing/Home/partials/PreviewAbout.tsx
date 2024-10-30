@@ -1,9 +1,5 @@
-import { LandingDataStruct } from "@/types";
 import { Link } from "@inertiajs/react";
-
-type PreviewAboutProp = {
-  about: LandingDataStruct[];
-};
+import { PreviewAboutProp } from "../types";
 
 export default function PreviewAbout({ about }: PreviewAboutProp) {
   const initialState = {

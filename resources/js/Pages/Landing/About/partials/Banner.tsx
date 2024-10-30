@@ -1,7 +1,4 @@
-type BannerProp = {
-  kabinet: string | null;
-  description: string | null;
-};
+import { BannerProp } from "../types";
 
 export default function Banner({ kabinet, description }: BannerProp) {
   return (

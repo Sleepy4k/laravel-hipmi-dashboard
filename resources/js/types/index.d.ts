@@ -1,4 +1,4 @@
-export interface User {
+export type User = {
   id: number;
   name: string;
   email: string;
@@ -8,11 +8,11 @@ export interface User {
   permissions: string[];
 }
 
-export interface Auth {
+export type Auth = {
   user: User;
 }
 
-export interface AppSetting {
+export type AppSetting = {
   debug: boolean;
   name: string;
   description: string;

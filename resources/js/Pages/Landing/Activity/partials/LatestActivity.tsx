@@ -1,17 +1,7 @@
 import { Suspense } from "react";
 import { convertDateToLocaleString } from "@/utils/parse";
 import { Link } from "@inertiajs/react";
-
-type ActivityDataProp = {
-  slug: string;
-  title: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-type LatestActivityProp = {
-  activities: ActivityDataProp[];
-};
+import { ActivityData, LatestActivityProp } from "../types";
 
 export default function LatestActivity({ activities }: LatestActivityProp) {
   const RenderActivities = () => {
@@ -25,7 +15,7 @@ export default function LatestActivity({ activities }: LatestActivityProp) {
         </div>
       );
 
-    return activities.map((activity: ActivityDataProp, index: number) => (
+    return activities.map((activity: ActivityData, index: number) => (
       <div
         data-aos="fade-up"
         data-aos-delay={`${index * 250}`}

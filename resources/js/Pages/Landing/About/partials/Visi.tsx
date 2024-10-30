@@ -1,9 +1,5 @@
 import { Suspense } from "react";
-
-type VisiDataProp = {
-  title: string;
-  description: string;
-};
+import { VisiDataProp } from "../types";
 
 export default function Visi({ visi }: { visi: VisiDataProp[] }) {
   const RenderVisi = () => {

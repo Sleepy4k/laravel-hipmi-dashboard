@@ -1,23 +1,9 @@
 import LandingLayout from "@/Layouts/LandingLayout";
-import { LandingDataStruct } from "@/types";
 import Banner from "./partials/Banner";
 import LatestActivity from "./partials/LatestActivity";
 import PreviewAbout from "./partials/PreviewAbout";
 import Calendar from "./partials/Calendar";
-
-type ActivityDataProp = {
-  slug: string;
-  title: string;
-  content: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-type HomePageProp = {
-  data: LandingDataStruct[];
-  about: LandingDataStruct[];
-  activities: ActivityDataProp[];
-};
+import { HomePageProp } from "./types";
 
 function Home({ data, about, activities }: HomePageProp) {
   const initialState = {

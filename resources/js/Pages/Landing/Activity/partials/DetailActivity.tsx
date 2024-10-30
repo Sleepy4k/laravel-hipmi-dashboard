@@ -1,25 +1,6 @@
 import { convertDateToLocaleString } from "@/utils/parse";
 import { Calendar } from "lucide-react";
-
-type ImageBody = {
-  url: string;
-};
-
-type ActivityDataProp = {
-  slug: string;
-  title: string;
-  thumbnail: string | null;
-  created_at: string;
-};
-
-type ActivityData = ActivityDataProp & {
-  content: TrustedHTML;
-  images: ImageBody[];
-};
-
-type DetailActivityProp = {
-  activity: ActivityData;
-};
+import { DetailActivityProp, ImageBody } from "../types";
 
 export default function DetailActivity({ activity }: DetailActivityProp) {
   return (

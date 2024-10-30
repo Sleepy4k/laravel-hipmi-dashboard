@@ -1,24 +1,7 @@
 import LandingLayout from "@/Layouts/LandingLayout";
-import { LandingDataStruct } from "@/types";
 import Visi from "./partials/Visi";
 import Banner from "./partials/Banner";
-
-type HomePageProp = {
-  data: LandingDataStruct[];
-};
-
-type VisiDataProp = {
-  title: string;
-  description: string;
-};
-
-type DataStateType = {
-  kabinet: string | null;
-  description: string | null;
-  visi: VisiDataProp[];
-  misi: string | null;
-  slogan: string | null;
-};
+import { DataStateType, HomePageProp } from "./types";
 
 function Home({ data }: HomePageProp) {
   const initialState: DataStateType = {

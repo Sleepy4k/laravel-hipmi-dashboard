@@ -1,10 +1,5 @@
+import { BannerProp } from "../types";
 import { Hero } from "./StyledTag";
-
-type BannerProp = {
-  banner: string;
-  header?: string | null;
-  description?: string | null;
-};
 
 export default function Banner({ banner, header, description }: BannerProp) {
   return (
