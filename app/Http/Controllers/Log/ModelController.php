@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Log;
 use App\Policies\Log\ModelPolicy;
 use App\Services\Log\ModelService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use Spatie\Activitylog\Models\Activity;
 
 class ModelController extends Controller
@@ -28,7 +27,7 @@ class ModelController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', ModelPolicy::class);
+        $this->authorize('viewAny', ModelPolicy::class);
 
         try {
             session()->put('log.model.url', request()->fullUrl());
@@ -44,7 +43,7 @@ class ModelController extends Controller
      */
     public function show(Activity $model)
     {
-        Gate::authorize('view', [ModelPolicy::class, $model]);
+        $this->authorize('view', [ModelPolicy::class, $model]);
 
         try {
             return inertia('Log/Model/Show', $this->service->show($model));

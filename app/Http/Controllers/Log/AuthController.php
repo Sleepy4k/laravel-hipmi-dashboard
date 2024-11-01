@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Log;
 use App\Policies\Log\AuthPolicy;
 use App\Services\Log\AuthService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use Spatie\Activitylog\Models\Activity;
 
 class AuthController extends Controller
@@ -28,7 +27,7 @@ class AuthController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', AuthPolicy::class);
+        $this->authorize('viewAny', AuthPolicy::class);
 
         try {
             session()->put('log.auth.url', request()->fullUrl());
@@ -44,7 +43,7 @@ class AuthController extends Controller
      */
     public function show(Activity $auth)
     {
-        Gate::authorize('view', [AuthPolicy::class, $auth]);
+        $this->authorize('view', [AuthPolicy::class, $auth]);
 
         try {
             return inertia('Log/Auth/Show', $this->service->show($auth));

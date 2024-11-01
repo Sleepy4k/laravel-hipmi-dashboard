@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Translate;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Policies\Translate\LanguagePolicy;
 use App\Services\Translate\LanguageService;
 use App\Http\Requests\Translate\StoreLanguageRequest;
@@ -28,7 +27,7 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', LanguagePolicy::class);
+        $this->authorize('viewAny', LanguagePolicy::class);
 
         try {
             return inertia('Translate/Language/Home', $this->service->index());
@@ -42,7 +41,7 @@ class LanguageController extends Controller
      */
     public function store(StoreLanguageRequest $request)
     {
-        Gate::authorize('store', LanguagePolicy::class);
+        $this->authorize('store', LanguagePolicy::class);
 
         try {
             $this->service->store($request->validated());

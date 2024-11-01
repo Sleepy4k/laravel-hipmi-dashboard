@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Application;
 
 use App\Models\ApplicationSetting;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Services\Application\SettingService;
 use App\Http\Requests\Application\StoreSettingRequest;
 use App\Http\Requests\Application\UpdateSettingRequest;
@@ -29,7 +28,7 @@ class SettingController extends Controller
      */
     public function index(string $mode)
     {
-        Gate::authorize('viewAny', [ApplicationSetting::class, $mode]);
+        $this->authorize('viewAny', [ApplicationSetting::class, $mode]);
 
         try {
             session()->put('application.setting.url', request()->fullUrl());
@@ -45,7 +44,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', ApplicationSetting::class);
+        $this->authorize('create', ApplicationSetting::class);
 
         try {
             return inertia('Application/Setting/Create', $this->service->create());
@@ -59,7 +58,7 @@ class SettingController extends Controller
      */
     public function store(StoreSettingRequest $request)
     {
-        Gate::authorize('store', ApplicationSetting::class);
+        $this->authorize('store', ApplicationSetting::class);
 
         try {
             $this->service->store($request->validated());
@@ -77,7 +76,7 @@ class SettingController extends Controller
      */
     public function show(ApplicationSetting $setting)
     {
-        Gate::authorize('view', $setting);
+        $this->authorize('view', $setting);
 
         try {
             return inertia('Application/Setting/Show', $this->service->show($setting->id));
@@ -91,7 +90,7 @@ class SettingController extends Controller
      */
     public function edit(ApplicationSetting $setting)
     {
-        Gate::authorize('edit', $setting);
+        $this->authorize('edit', $setting);
 
         try {
             return inertia('Application/Setting/Edit', $this->service->edit($setting->id));
@@ -105,7 +104,7 @@ class SettingController extends Controller
      */
     public function update(UpdateSettingRequest $request, ApplicationSetting $setting)
     {
-        Gate::authorize('update', $setting);
+        $this->authorize('update', $setting);
 
         try {
             $this->service->update($request->validated(), $setting->id);
@@ -123,7 +122,7 @@ class SettingController extends Controller
      */
     public function destroy(ApplicationSetting $setting)
     {
-        Gate::authorize('delete', $setting);
+        $this->authorize('delete', $setting);
 
         try {
             $this->service->destroy($setting->id);

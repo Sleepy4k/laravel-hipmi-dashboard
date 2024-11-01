@@ -5,7 +5,6 @@ namespace App\Http\Controllers\RBAC;
 use App\Policies\RBAC\HomePolicy;
 use App\Services\RBAC\HomeService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -27,7 +26,7 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-        Gate::authorize('viewAny', HomePolicy::class);
+        $this->authorize('viewAny', HomePolicy::class);
 
         try {
             return inertia('RBAC/Home', $this->service->invoke());

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Application;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Models\ApplicationSettingType;
 use App\Services\Application\SettingTypeService;
 use App\Http\Requests\Application\StoreSettingTypeRequest;
@@ -29,7 +28,7 @@ class SettingTypeController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', ApplicationSettingType::class);
+        $this->authorize('viewAny', ApplicationSettingType::class);
 
         try {
             session()->put('application.setting.type.url', request()->fullUrl());
@@ -45,7 +44,7 @@ class SettingTypeController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', ApplicationSettingType::class);
+        $this->authorize('create', ApplicationSettingType::class);
 
         try {
             return inertia('Application/Type/Create', $this->service->create());
@@ -59,7 +58,7 @@ class SettingTypeController extends Controller
      */
     public function store(StoreSettingTypeRequest $request)
     {
-        Gate::authorize('store', ApplicationSettingType::class);
+        $this->authorize('store', ApplicationSettingType::class);
 
         try {
             $this->service->store($request->validated());
@@ -77,7 +76,7 @@ class SettingTypeController extends Controller
      */
     public function show(ApplicationSettingType $type)
     {
-        Gate::authorize('view', $type);
+        $this->authorize('view', $type);
 
         try {
             return inertia('Application/Type/Show', $this->service->show($type->id));
@@ -91,7 +90,7 @@ class SettingTypeController extends Controller
      */
     public function edit(ApplicationSettingType $type)
     {
-        Gate::authorize('update', $type);
+        $this->authorize('update', $type);
 
         try {
             return inertia('Application/Type/Edit', $this->service->edit($type->id));
@@ -105,7 +104,7 @@ class SettingTypeController extends Controller
      */
     public function update(UpdateSettingTypeRequest $request, ApplicationSettingType $type)
     {
-        Gate::authorize('update', $type);
+        $this->authorize('update', $type);
 
         try {
             $this->service->update($request->validated(), $type->id);
@@ -123,7 +122,7 @@ class SettingTypeController extends Controller
      */
     public function destroy(ApplicationSettingType $type)
     {
-        Gate::authorize('delete', $type);
+        $this->authorize('delete', $type);
 
         try {
             $this->service->destroy($type->id);

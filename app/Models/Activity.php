@@ -115,6 +115,7 @@ class Activity extends Model
         'id',
         'slug',
         'title',
+        'content',
     ];
 
     /**

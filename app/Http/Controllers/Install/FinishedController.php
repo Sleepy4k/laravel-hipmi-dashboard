@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Install;
 use Inertia\Response;
 use App\Support\InstallationStep;
 use App\Http\Controllers\Controller;
-use App\Policies\Install\FinishPolicy;
-use Illuminate\Http\RedirectResponse;
-use App\Services\Install\FinishedService;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Http\RedirectResponse;
+use App\Policies\Install\FinishPolicy;
+use App\Services\Install\FinishedService;
 
 class FinishedController extends Controller
 {

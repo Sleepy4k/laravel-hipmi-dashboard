@@ -4,7 +4,6 @@ namespace App\Http\Controllers\RBAC;
 
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Services\RBAC\PermissionService;
 use App\Http\Requests\RBAC\StorePermissionRequest;
 use App\Http\Requests\RBAC\UpdatePermissionRequest;
@@ -29,7 +28,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', Permission::class);
+        $this->authorize('viewAny', Permission::class);
 
         try {
             session()->put('rbac.permission.url', request()->fullUrl());
@@ -45,7 +44,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', Permission::class);
+        $this->authorize('create', Permission::class);
 
         try {
             return inertia('RBAC/Permission/Create', $this->service->create());
@@ -59,7 +58,7 @@ class PermissionController extends Controller
      */
     public function store(StorePermissionRequest $request)
     {
-        Gate::authorize('store', Permission::class);
+        $this->authorize('store', Permission::class);
 
         try {
             $this->service->store($request->validated());
@@ -77,7 +76,7 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        Gate::authorize('view', $permission);
+        $this->authorize('view', $permission);
 
         try {
             return inertia('RBAC/Permission/Show', $this->service->show($permission));
@@ -91,7 +90,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        Gate::authorize('edit', $permission);
+        $this->authorize('edit', $permission);
 
         try {
             return inertia('RBAC/Permission/Edit', $this->service->edit($permission));
@@ -105,7 +104,7 @@ class PermissionController extends Controller
      */
     public function update(UpdatePermissionRequest $request, Permission $permission)
     {
-        Gate::authorize('update', $permission);
+        $this->authorize('update', $permission);
 
         try {
             $this->service->update($request->validated(), $permission->id);
@@ -123,7 +122,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        Gate::authorize('delete', $permission);
+        $this->authorize('delete', $permission);
 
         try {
             $this->service->destroy($permission->id);

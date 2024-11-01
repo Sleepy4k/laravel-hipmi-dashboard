@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Log;
 use App\Policies\Log\QueryPolicy;
 use App\Services\Log\QueryService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 
 class QueryController extends Controller
 {
@@ -27,7 +26,7 @@ class QueryController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', QueryPolicy::class);
+        $this->authorize('viewAny', QueryPolicy::class);
 
         try {
             session()->put('log.query.url', request()->fullUrl());
@@ -43,7 +42,7 @@ class QueryController extends Controller
      */
     public function show(string $name)
     {
-        Gate::authorize('view', [QueryPolicy::class, $name]);
+        $this->authorize('view', [QueryPolicy::class, $name]);
 
         try {
             return inertia('Log/Query/Show', $this->service->show($name));

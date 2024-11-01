@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Account;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Services\Account\UserService;
 use App\Http\Requests\Account\StoreUserRequest;
 use App\Http\Requests\Account\UpdateUserRequest;
@@ -29,7 +28,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', User::class);
+        $this->authorize('viewAny', User::class);
 
         try {
             session()->put('account.user.url', request()->fullUrl());
@@ -45,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', User::class);
+        $this->authorize('create', User::class);
 
         try {
             return inertia('User/Create', $this->service->create());
@@ -59,7 +58,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        Gate::authorize('store', User::class);
+        $this->authorize('store', User::class);
 
         try {
             $this->service->store($request->validated());
@@ -77,7 +76,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        Gate::authorize('view', $user);
+        $this->authorize('view', $user);
 
         try {
             return inertia('User/Show', $this->service->show($user));
@@ -91,7 +90,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        Gate::authorize('edit', $user);
+        $this->authorize('edit', $user);
 
         try {
             return inertia('User/Edit', $this->service->edit($user));
@@ -105,7 +104,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        Gate::authorize('update', $user);
+        $this->authorize('update', $user);
 
         try {
             $this->service->update($request->validated(), $user->id);
@@ -123,7 +122,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        Gate::authorize('delete', $user);
+        $this->authorize('delete', $user);
 
         try {
             $this->service->destroy($user->id);

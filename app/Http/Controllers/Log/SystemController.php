@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Log;
 use App\Policies\Log\SystemPolicy;
 use App\Services\Log\SystemService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 
 class SystemController extends Controller
 {
@@ -27,7 +26,7 @@ class SystemController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', SystemPolicy::class);
+        $this->authorize('viewAny', SystemPolicy::class);
 
         try {
             session()->put('log.system.url', request()->fullUrl());
@@ -43,7 +42,7 @@ class SystemController extends Controller
      */
     public function show(string $name)
     {
-        Gate::authorize('view', [SystemPolicy::class, $name]);
+        $this->authorize('view', [SystemPolicy::class, $name]);
 
         try {
             return inertia('Log/System/Show', $this->service->show($name));

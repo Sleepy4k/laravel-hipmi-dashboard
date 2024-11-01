@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Translate;
 
 use App\Models\Translate;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Services\Translate\TranslateService;
 use App\Http\Requests\Translate\StoreTranslateRequest;
 use App\Http\Requests\Translate\UpdateTranslateRequest;
@@ -29,7 +28,7 @@ class TranslateController extends Controller
      */
     public function index(string $mode)
     {
-        Gate::authorize('viewAny', [Translate::class, $mode]);
+        $this->authorize('viewAny', [Translate::class, $mode]);
 
         try {
             session()->put('translate.translate.url', request()->fullUrl());
@@ -45,7 +44,7 @@ class TranslateController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', Translate::class);
+        $this->authorize('create', Translate::class);
 
         try {
             return inertia('Translate/Translate/Create', $this->service->create());
@@ -59,7 +58,7 @@ class TranslateController extends Controller
      */
     public function store(StoreTranslateRequest $request)
     {
-        Gate::authorize('store', Translate::class);
+        $this->authorize('store', Translate::class);
 
         try {
             $this->service->store($request->validated());
@@ -77,7 +76,7 @@ class TranslateController extends Controller
      */
     public function show(Translate $list)
     {
-        Gate::authorize('view', $list);
+        $this->authorize('view', $list);
 
         try {
             return inertia('Translate/Translate/Show', $this->service->show($list));
@@ -91,7 +90,7 @@ class TranslateController extends Controller
      */
     public function edit(Translate $list)
     {
-        Gate::authorize('edit', $list);
+        $this->authorize('edit', $list);
 
         try {
             return inertia('Translate/Translate/Edit', $this->service->edit($list));
@@ -105,7 +104,7 @@ class TranslateController extends Controller
      */
     public function update(UpdateTranslateRequest $request, Translate $list)
     {
-        Gate::authorize('update', $list);
+        $this->authorize('update', $list);
 
         try {
             $this->service->update($request->validated(), $list->id);
@@ -123,7 +122,7 @@ class TranslateController extends Controller
      */
     public function destroy(Translate $list)
     {
-        Gate::authorize('delete', $list);
+        $this->authorize('delete', $list);
 
         try {
             $this->service->destroy($list->id);

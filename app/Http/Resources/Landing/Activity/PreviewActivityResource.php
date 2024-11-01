@@ -22,6 +22,10 @@ class PreviewActivityResource extends JsonResource
         }
 
         return [
+            $this->mergeWhen(!empty($this->id), [
+                'id' => $this->id,
+            ]),
+
             'slug' => $this->slug,
             'title' => $this->title,
             'content' => $content,
@@ -36,6 +40,10 @@ class PreviewActivityResource extends JsonResource
             ]),
 
             'created_at' => $this->created_at ? date('Y-m-d', strtotime($this->created_at)) : null,
+
+            $this->mergeWhen(!empty($this->updated_at), [
+                'updated_at' => $this->updated_at ? date('Y-m-d', strtotime($this->updated_at)) : null,
+            ]),
         ];
     }
 }

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Log;
 use App\Policies\Log\HomePolicy;
 use App\Services\Log\HomeService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -27,7 +26,7 @@ class HomeController extends Controller
      */
     public function __invoke()
     {
-        Gate::authorize('viewAny', HomePolicy::class);
+        $this->authorize('viewAny', HomePolicy::class);
 
         try {
             return inertia('Log/Home', $this->service->invoke());

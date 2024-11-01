@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Traits\SystemLog;
 use App\Enum\ReportLogType;
+use Illuminate\Support\Facades\Gate;
 
 abstract class Controller
 {
@@ -23,5 +24,18 @@ abstract class Controller
         return back()->withErrors([
             'error' => $error->getMessage()
         ])->withInput();
+    }
+
+    /**
+     * Check if current user authorize on current method
+     *
+     * @param string $method
+     * @param mixed $argument
+     *
+     * @return \Illuminate\Auth\Access\Response
+     */
+    protected function authorize(string $method, mixed $argument)
+    {
+        return Gate::authorize($method, $argument);
     }
 }

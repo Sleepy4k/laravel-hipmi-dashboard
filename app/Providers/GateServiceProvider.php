@@ -48,6 +48,8 @@ class GateServiceProvider extends ServiceProvider
         Gate::policy(\App\Models\ApplicationSetting::class, \App\Policies\Application\SettingPolicy::class);
         Gate::policy(\App\Models\ApplicationSettingType::class, \App\Policies\Application\SettingTypePolicy::class);
 
+        Gate::policy(\App\Models\Activity::class, \App\Policies\Landing\ActivityPolicy::class);
+
         Gate::policy(\App\Models\Translate::class, \App\Policies\Translate\TranslatePolicy::class);
 
         Gate::policy(\App\Models\Role::class, \App\Policies\RBAC\RolePolicy::class);

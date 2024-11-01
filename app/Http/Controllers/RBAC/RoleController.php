@@ -5,7 +5,6 @@ namespace App\Http\Controllers\RBAC;
 use App\Models\Role;
 use App\Services\RBAC\RoleService;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Requests\RBAC\StoreRoleRequest;
 use App\Http\Requests\RBAC\UpdateRoleRequest;
 
@@ -29,7 +28,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', Role::class);
+        $this->authorize('viewAny', Role::class);
 
         try {
             session()->put('rbac.role.url', request()->fullUrl());
@@ -45,7 +44,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', Role::class);
+        $this->authorize('create', Role::class);
 
         try {
             return inertia('RBAC/Role/Create', $this->service->create());
@@ -59,7 +58,7 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        Gate::authorize('store', Role::class);
+        $this->authorize('store', Role::class);
 
         try {
             $this->service->store($request->validated());
@@ -77,7 +76,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        Gate::authorize('view', $role);
+        $this->authorize('view', $role);
 
         try {
             return inertia('RBAC/Role/Show', $this->service->show($role));
@@ -91,7 +90,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        Gate::authorize('edit', $role);
+        $this->authorize('edit', $role);
 
         try {
             return inertia('RBAC/Role/Edit', $this->service->edit($role));
@@ -105,7 +104,7 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        Gate::authorize('update', $role);
+        $this->authorize('update', $role);
 
         try {
             $this->service->update($request->validated(), $role->id);
@@ -123,7 +122,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        Gate::authorize('delete', $role);
+        $this->authorize('delete', $role);
 
         try {
             $this->service->destroy($role->id);
