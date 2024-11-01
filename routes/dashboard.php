@@ -7,10 +7,22 @@ use App\Http\Controllers\Account;
 use App\Http\Controllers\Translate;
 use App\Http\Controllers\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Landing\Admin;
 use App\Http\Controllers\DashboardController;
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard.index');
+
+    Route::prefix('landing')->group(function () {
+        Route::resource('/activity', Admin\ActivityController::class)
+            ->names('activities');
+
+        Route::resource('/landing', Admin\DataController::class)
+            ->names('landing');
+
+        Route::resource('/landing/type', Admin\TypeController::class)
+            ->names('landing.type');
+    });
 
     Route::prefix('application')->as('application.')->group(function () {
         Route::get('/{displayMode}', [Application\SettingController::class, 'index'])
@@ -36,8 +48,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             ->names('users');
     });
 
-    Route::get('/blog', DashboardController::class)->name('blog.index');
-    Route::get('/gallery', DashboardController::class)->name('gallery.index');
     Route::get('/menu', DashboardController::class)->name('menus.index');
     Route::get('/menu/meta', DashboardController::class)->name('menus.metas.index');
 
