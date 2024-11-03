@@ -38,7 +38,7 @@ class UserService extends Service
             }
 
             // Super admin role name
-            $superAdminRole = 'superadmin';
+            $superAdminRole = config('permission.seeder.highestRole');
 
             // Check if role super admin exists
             $role = $this->roleInterface->findByCustomId(['name' => $superAdminRole], ['name']);

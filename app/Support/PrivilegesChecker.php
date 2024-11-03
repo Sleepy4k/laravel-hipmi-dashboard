@@ -33,7 +33,7 @@ class PrivilegesChecker
         foreach ($testMethods as $test) {
             $tester->{$test}();
 
-            throw_if($tester->getLastError(), new PrivilegeNotGrantedException($tester->getLastError()));
+            throw_if($tester->getLastError(), new PrivilegeNotGrantedException($tester->getLastError() ?? "Something went wrong"));
         }
     }
 

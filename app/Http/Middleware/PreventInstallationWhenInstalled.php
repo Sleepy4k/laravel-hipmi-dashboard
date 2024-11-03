@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Symfony\Component\HttpFoundation\Response;
 
 class PreventInstallationWhenInstalled
@@ -15,6 +16,12 @@ class PreventInstallationWhenInstalled
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (!file_exists(storage_path('.installed')) && $request->is('install*')) {
+            Debugbar::disable();
+        } else {
+            Debugbar::enable();
+        }
+
         if ($request->route()->getName() === 'install.finished' || $request->route()->getName() === 'install.link') {
             /**
              * Uses signed URL Laravel feature as when the installation
@@ -30,14 +37,14 @@ class PreventInstallationWhenInstalled
                     'description' => 'We are sorry, but the page you requested was not found',
                     'home' => 'Back to home'
                 ])
-                ->toResponse($request)
-                ->setStatusCode(404);
+                    ->toResponse($request)
+                    ->setStatusCode(404);
             }
 
             return $next($request);
         }
 
-        if (file_exists(storage_path('.installed')) && $request->is('install*') ) {
+        if (file_exists(storage_path('.installed')) && $request->is('install*')) {
             if ($request->expectsJson()) return response()->json(['message' => 'Not Found'], 404);
             return inertia('Error', [
                 'status' => 404,
@@ -45,11 +52,10 @@ class PreventInstallationWhenInstalled
                 'description' => 'We are sorry, but the page you requested was not found',
                 'home' => 'Back to home'
             ])
-            ->toResponse($request)
-            ->setStatusCode(404);
+                ->toResponse($request)
+                ->setStatusCode(404);
         }
 
         return $next($request);
-
     }
 }
