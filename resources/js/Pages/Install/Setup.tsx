@@ -3,13 +3,13 @@ import { FormEventHandler } from "react";
 import { useForm } from "@inertiajs/react";
 import InstallationLayout from "@/Layouts/InstallationLayout";
 
-type IDefaultConfigProps = PageProps<{
+type IDefaultConfigProps = {
   app_name: string;
   database_hostname: string;
   database_port: string;
   database_name: string;
   database_username: string;
-}>;
+};
 
 export default function Setup({
   guessedUrl,
@@ -41,7 +41,7 @@ export default function Setup({
 
   return (
     <InstallationLayout step={3} errors={errors} title="Setup">
-      <div className="mt-5 rounded-md bg-warning-50 p-4">
+      <div className="mt-5 rounded-md bg-warning-50 p-4" data-aos="fade-down">
         <div className="flex">
           <div className="shrink-0">
             <svg
@@ -71,11 +71,14 @@ export default function Setup({
 
       <form onSubmit={submit}>
         <div className="p-3">
-          <h5 className="my-5 text-lg font-semibold text-neutral-800">
+          <h5
+            className="my-5 text-lg font-semibold text-neutral-800"
+            data-aos="fade-right"
+          >
             General Config
           </h5>
 
-          <div className="space-y-6 sm:space-y-5">
+          <div className="space-y-6 sm:space-y-5" data-aos="fade-up">
             <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-neutral-200 sm:pt-5">
               <label
                 htmlFor="appUrlName"
@@ -97,10 +100,10 @@ export default function Setup({
                 />
                 <p className="mt-2 text-sm text-neutral-500">
                   {`
-                                        * This is the URL where you are installing the application,
-                                        for example, for subdomain in this field you need to enter "https://subdomain.example.com/",
-                                        make sure to check the documentation on how to create your subdomain.
-                                    `}
+                    * This is the URL where you are installing the application,
+                    for example, for subdomain in this field you need to enter "https://subdomain.example.com/",
+                    make sure to check the documentation on how to create your subdomain.
+                  `}
                 </p>
                 {errors?.app_url && (
                   <p className="mt-2 text-sm text-danger-600">
@@ -138,12 +141,18 @@ export default function Setup({
             </div>
           </div>
 
-          <h5 className="mb-5 mt-10 text-lg font-semibold text-neutral-800">
+          <h5
+            className="mb-5 mt-10 text-lg font-semibold text-neutral-800"
+            data-aos="fade-right"
+          >
             Database Configuration
           </h5>
 
           {errors?.privilege && (
-            <div className="mb-5 rounded-md border border-danger-200 bg-danger-50 p-4 text-sm text-danger-500">
+            <div
+              className="mb-5 rounded-md border border-danger-200 bg-danger-50 p-4 text-sm text-danger-500"
+              data-aos="fade-up"
+            >
               <p className="mb-2">{errors.privilege}</p>
               <p className="font-bold">
                 Make sure to give{" "}
@@ -156,7 +165,10 @@ export default function Setup({
           )}
 
           {errors?.general && (
-            <div className="mb-5 rounded-md border border-danger-200 bg-danger-50 p-4 text-sm text-danger-500">
+            <div
+              className="mb-5 rounded-md border border-danger-200 bg-danger-50 p-4 text-sm text-danger-500"
+              data-aos="fade-up"
+            >
               <p className="mb-2">{errors.general}</p>
               <p className="font-bold">Please check the following:</p>
               <ul className="list-disc list-inside">
@@ -167,7 +179,7 @@ export default function Setup({
             </div>
           )}
 
-          <div className="space-y-6 sm:space-y-5">
+          <div className="space-y-6 sm:space-y-5" data-aos="fade-up">
             <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-neutral-200 sm:pt-5">
               <label
                 htmlFor="inputDatabaseHostname"
@@ -216,9 +228,9 @@ export default function Setup({
                 />
                 <p className="mt-2 text-sm text-neutral-500">
                   {`
-                                        * The default MySQL ports is 3306,
-                                        change the value only if you are certain that you are using different port.
-                                    `}
+                    * The default MySQL ports is 3306,
+                    change the value only if you are certain that you are using different port.
+                  `}
                 </p>
                 {errors?.database_port && (
                   <p className="mt-2 text-sm text-danger-600">
@@ -249,8 +261,8 @@ export default function Setup({
                 />
                 <p className="mt-2 text-sm text-neutral-500">
                   {`
-                                        * Make sure that you have created the database before configuring.
-                                    `}
+                    * Make sure that you have created the database before configuring.
+                  `}
                 </p>
                 {errors?.database_name && (
                   <p className="mt-2 text-sm text-danger-600">
@@ -281,8 +293,8 @@ export default function Setup({
                 />
                 <p className="mt-2 text-sm text-neutral-500">
                   {`
-                                        * Make sure you have set ALL privileges for the user.
-                                    `}
+                    * Make sure you have set ALL privileges for the user.
+                  `}
                 </p>
                 {errors?.database_username && (
                   <p className="mt-2 text-sm text-danger-600">
@@ -312,8 +324,8 @@ export default function Setup({
                 />
                 <p className="mt-2 text-sm text-neutral-500">
                   {`
-                                        * Enter the database user password.
-                                    `}
+                    * Enter the database user password.
+                  `}
                 </p>
                 {errors?.database_password && (
                   <p className="mt-2 text-sm text-danger-600">

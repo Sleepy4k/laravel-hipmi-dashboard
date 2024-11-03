@@ -8,14 +8,14 @@ import StatusCheckerBox from "./partials/StatusCheckerBox";
 import TableHead from "./partials/TableHead";
 import TableBody from "./partials/TableBody";
 
-type IPermissionProps = PageProps<{
+type IPermissionProps = {
   errors: boolean | null;
   results: {
     folder: string;
     permission: string;
     isSet: boolean;
   }[];
-}>;
+};
 
 export default function Permissions({
   errors,
@@ -24,7 +24,7 @@ export default function Permissions({
 }: PageProps<{ permissions: IPermissionProps; process_user: string }>) {
   return (
     <InstallationLayout step={2} errors={errors} title="Permissions">
-      <div className="p-3">
+      <div className="p-3" data-aos="fade-right">
         <h4 className="my-5 text-lg font-semibold text-neutral-800">
           Files and folders permissions
         </h4>

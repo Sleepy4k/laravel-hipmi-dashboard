@@ -6,7 +6,11 @@ export default function Menu({ step }: MenuProps) {
   return (
     <nav>
       <ol className="divide-y divide-neutral-300 rounded-md border border-neutral-300 md:flex md:divide-y-0">
-        <li className="relative md:flex md:flex-1">
+        <li
+          className="relative md:flex md:flex-1"
+          data-aos="fade-right"
+          data-aos-delay={1 * 100}
+        >
           <a
             href="#"
             className="pointer-events-none flex items-center px-6 py-4 text-sm font-medium"
@@ -60,7 +64,11 @@ export default function Menu({ step }: MenuProps) {
           </div>
         </li>
 
-        <li className="relative md:flex md:flex-1">
+        <li
+          className="relative md:flex md:flex-1"
+          data-aos="fade-right"
+          data-aos-delay={2 * 100}
+        >
           <a href="#" className="group pointer-events-none flex items-center">
             <span className="flex items-center px-6 py-4 text-sm font-medium">
               <span
@@ -123,7 +131,11 @@ export default function Menu({ step }: MenuProps) {
           </div>
         </li>
 
-        <li className="relative md:flex md:flex-1">
+        <li
+          className="relative md:flex md:flex-1"
+          data-aos="fade-right"
+          data-aos-delay={3 * 100}
+        >
           <a href="#" className="group pointer-events-none flex items-center">
             <span className="flex items-center px-6 py-4 text-sm font-medium">
               <span
@@ -186,7 +198,11 @@ export default function Menu({ step }: MenuProps) {
           </div>
         </li>
 
-        <li className="relative md:flex md:flex-1">
+        <li
+          className="relative md:flex md:flex-1"
+          data-aos="fade-right"
+          data-aos-delay={4 * 100}
+        >
           <a href="#" className="group pointer-events-none flex items-center">
             <span className="flex items-center px-6 py-4 text-sm font-medium">
               <span
@@ -249,7 +265,11 @@ export default function Menu({ step }: MenuProps) {
           </div>
         </li>
 
-        <li className="relative md:flex md:flex-1">
+        <li
+          className="relative md:flex md:flex-1"
+          data-aos="fade-right"
+          data-aos-delay={5 * 100}
+        >
           <a href="#" className="group pointer-events-none flex items-center">
             <span className="flex items-center px-6 py-4 text-sm font-medium">
               <span

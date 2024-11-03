@@ -23,6 +23,8 @@ export default function Finish({
   phpExecutable,
   minPhpVersion,
 }: FinishProps) {
+  const execPath = phpExecutable || "php";
+  const appName = import.meta.env.VITE_APP_NAME;
   const redirectHome = () => (window.location.href = base_url);
 
   useEffect(() => {
@@ -35,57 +37,66 @@ export default function Finish({
   return (
     <InstallationLayout step={5} errors={errors} title="Finish">
       <div className="p-3">
-        <h4 className="my-5 text-lg font-semibold text-neutral-800">
+        <h4
+          className="my-5 text-lg font-semibold text-neutral-800"
+          data-aos="fade-right"
+        >
           Installation Successfull
         </h4>
 
-        <p className="text-neutral-700">
-          <span className="font-semibold">{`${
-            import.meta.env.VITE_APP_NAME
-          } has been successfully installed`}</span>
+        <p className="text-neutral-700" data-aos="fade-right">
+          <span className="font-semibold">{`${appName} has been successfully installed`}</span>
           , if you want to add data dummy to the database, you can run the
           command below:
         </p>
 
-        <div className="mt-4 mb-3 block w-full dark:text-black rounded-md border border-neutral-300 bg-neutral-50 py-4 px-5 text-base shadow-sm">
-          <span className="select-all">{` ${
-            phpExecutable || "php"
-          } ${base_path}\\artisan db:seed`}</span>
+        <div
+          className="mt-4 mb-3 block w-full dark:text-black rounded-md border border-neutral-300 bg-neutral-50 py-4 px-5 text-base shadow-sm"
+          data-aos="fade-up"
+        >
+          <span className="select-all">{` ${execPath} ${base_path}\\artisan db:seed`}</span>
         </div>
 
-        <p className="mt-4 text-neutral-700">
+        <p className="mt-4 text-neutral-700" data-aos="fade-up">
           If you are not certain on how to configure the database seeder with
           the minimum required PHP version ({minPhpVersion}), the best is to
           consult with experienced laravel developers.
         </p>
 
-        <h4 className="mt-5 mb-2 text-lg font-semibold text-neutral-800">
+        <h4
+          className="mt-5 mb-2 text-lg font-semibold text-neutral-800"
+          data-aos="fade-right"
+        >
           Setting up Task Scheduler
         </h4>
 
-        <p className="text-neutral-700">
+        <p className="text-neutral-700" data-aos="fade-up">
           To run the scheduler, you should add the following Cron entry to your
           server:
         </p>
 
-        <div className="mt-4 mb-3 block w-full dark:text-black rounded-md border border-neutral-300 bg-neutral-50 py-4 px-5 text-base shadow-sm">
+        <div
+          className="mt-4 mb-3 block w-full dark:text-black rounded-md border border-neutral-300 bg-neutral-50 py-4 px-5 text-base shadow-sm"
+          data-aos="fade-up"
+        >
           {"* * * * * "}
-          <span className="select-all">{` ${
-            phpExecutable || "php"
-          } ${base_path}\\artisan schedule:run >> /dev/null 2>&1`}</span>
+          <span className="select-all">{` ${execPath} ${base_path}\\artisan schedule:run >> /dev/null 2>&1`}</span>
         </div>
 
-        <p className="text-neutral-700">
+        <p className="text-neutral-700" data-aos="fade-up">
           This Cron will call the Laravel command scheduler every minute. When
           the schedule:run command is executed, Laravel will evaluate your
           scheduled tasks and runs the tasks that are due.
         </p>
 
-        <h4 className="mt-5 mb-2 text-lg font-semibold text-neutral-800">
+        <h4
+          className="mt-5 mb-2 text-lg font-semibold text-neutral-800"
+          data-aos="fade-right"
+        >
           Admin Credentials
         </h4>
 
-        <p>
+        <p data-aos="fade-up">
           <span className="font-semibold text-neutral-700">{"Name: "}</span>
           <span className="select-all dark:text-black">{user.name || "-"}</span>
           <br />

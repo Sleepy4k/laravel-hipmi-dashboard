@@ -8,10 +8,10 @@ export default function ErrorIcon() {
     >
       <path
         d="M19 5L5 19M5.00001 5L19 19"
-        stroke="#000000"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        stroke="red"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></path>
     </svg>
   );

@@ -8,7 +8,7 @@ import StatusCheckerBox from "./partials/StatusCheckerBox";
 import TableHead from "./partials/TableHead";
 import TableBody from "./partials/TableBody";
 
-type IRequirementsProps = PageProps<{
+type IRequirementsProps = {
   errors: boolean | null;
   results: {
     extensions: {
@@ -29,28 +29,28 @@ type IRequirementsProps = PageProps<{
       [key: string]: boolean;
     };
   };
-}>;
+};
 
-type IPHPDataListProps = PageProps<{
+type IPHPDataListProps = {
   minimum: string;
   supported: boolean;
   current: string;
-}>;
+};
+
+type TableTitleProps = {
+  title: string;
+  className?: string;
+};
 
 export default function Requirements({
   php,
   errors,
   requirements,
 }: PageProps<{ php: IPHPDataListProps; requirements: IRequirementsProps }>) {
-  const TableTitle = ({
-    title,
-    className,
-  }: {
-    title: string;
-    className?: string;
-  }) => {
+  const TableTitle = ({ title, className }: TableTitleProps) => {
     return (
       <h4
+        data-aos="fade-right"
         className={"my-5 text-lg font-semibold text-neutral-800 " + className}
       >
         {title}

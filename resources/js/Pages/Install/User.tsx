@@ -25,7 +25,7 @@ export default function User({ errors }: PageProps) {
 
   return (
     <InstallationLayout step={4} errors={errors} title="User">
-      <div className="mt-5 rounded-md bg-warning-50 p-4">
+      <div className="mt-5 rounded-md bg-warning-50 p-4" data-aos="fade-down">
         <div className="flex">
           <div className="shrink-0">
             <svg
@@ -55,11 +55,14 @@ export default function User({ errors }: PageProps) {
 
       <form onSubmit={submit}>
         <div className="p-3">
-          <h5 className="my-5 text-lg font-semibold text-neutral-800">
+          <h5
+            className="my-5 text-lg font-semibold text-neutral-800"
+            data-aos="fade-right"
+          >
             Configure Admin User
           </h5>
 
-          <div className="space-y-6 sm:space-y-5">
+          <div className="space-y-6 sm:space-y-5" data-aos="fade-up">
             <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-neutral-200 sm:pt-5">
               <label
                 htmlFor="inputUserName"

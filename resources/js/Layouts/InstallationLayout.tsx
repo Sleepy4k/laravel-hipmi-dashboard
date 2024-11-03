@@ -21,7 +21,7 @@ export default function Installation({
 
       <div className="flex min-h-screen flex-col justify-center bg-neutral-100 py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="mt-5 text-center">
+          <div className="mt-5 text-center" data-aos="fade-down">
             <Logo className="flex justify-center w-auto" textcolor="text-black" />
           </div>
         </div>
