@@ -198,6 +198,8 @@ return [
             'admin',
             'superadmin',
         ],
+        // Highest role must be on role list, otherwise will throw an error
+        'highestRole' => 'superadmin',
         'permission' => [
             'list' => [
                 'dashboard.index',
