@@ -1,0 +1,9 @@
+---
+deployment:
+ tasks:
+ - composer install
+ - npm install
+ - npm run build
+ - php artisan naka:pre-setuo
+ - export DEPLOYPATH=/home/user/public_html/
+ - /bin/cp . $DEPLOYPATH
