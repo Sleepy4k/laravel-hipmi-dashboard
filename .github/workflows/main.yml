@@ -1,8 +1,10 @@
+name: github: deployment on progress
+
 on:
   push:
     branches:
       - production
-name: github: deployment on progress
+
 jobs:
   web-deploy:
     name: Deploying using FTP
